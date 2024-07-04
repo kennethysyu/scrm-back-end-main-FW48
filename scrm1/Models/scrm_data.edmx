@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model_scrm.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="agentinfo">
+          <Key>
+            <PropertyRef Name="AgentID" />
+            <PropertyRef Name="SellerID" />
+          </Key>
+          <Property Name="ColId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentID" Type="int" Nullable="false" />
+          <Property Name="AgentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="500" />
+          <Property Name="LevelID" Type="int" />
+          <Property Name="SellerID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Counter" Type="int" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="Account_status" Type="varchar" MaxLength="50" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Photo_Type" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="config">
+          <Key>
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="P_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Name" Type="varchar" MaxLength="50" />
+          <Property Name="P_Value" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="facebook_post">
+          <Key>
+            <PropertyRef Name="Ticket_Id" />
+          </Key>
+          <Property Name="Fb_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ticket_Id" Type="int" Nullable="false" />
+          <Property Name="Created_By" Type="int" />
+          <Property Name="Created_Time" Type="datetime" />
+          <Property Name="Updated_By" Type="int" />
+          <Property Name="Updated_Time" Type="datetime" />
+          <Property Name="Details" Type="nvarchar(max)" />
+          <Property Name="Media_Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="Media_Link" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="field">
+          <Key>
+            <PropertyRef Name="Field_Category" />
+            <PropertyRef Name="Field_Name" />
+          </Key>
+          <Property Name="Field_Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Field_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Field_Display" Type="nvarchar" MaxLength="200" />
+          <Property Name="Field_Tag" Type="nvarchar" MaxLength="50" />
+          <Property Name="Field_Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="field_option">
+          <Key>
+            <PropertyRef Name="Field_Name" />
+            <PropertyRef Name="Field_Option" />
+          </Key>
+          <Property Name="Field_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Field_Option" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="floor_plan">
+          <Key>
+            <PropertyRef Name="F_Id" />
+          </Key>
+          <Property Name="F_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Ordering" Type="int" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="Background" Type="nvarchar(max)" />
+          <Property Name="Style" Type="nvarchar" MaxLength="500" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="Created_By" Type="int" />
+          <Property Name="Created_Time" Type="datetime" />
+          <Property Name="Updated_By" Type="int" />
+          <Property Name="Updated_Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="password_log">
+          <Key>
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="P_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentID" Type="int" />
+          <Property Name="Password" Type="varchar" MaxLength="500" />
+          <Property Name="Created_Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="task_schedule_record">
+          <Key>
+            <PropertyRef Name="R_Id" />
+          </Key>
+          <Property Name="R_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Service" Type="nvarchar" MaxLength="100" />
+          <Property Name="Display_Message" Type="nvarchar(max)" />
+          <Property Name="Schedule_Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="S_Id" Type="int" />
+          <Property Name="Alert_Time" Type="datetime" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Handle_By" Type="int" />
+          <Property Name="Handle_Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="task_schedule_setting">
+          <Key>
+            <PropertyRef Name="S_Id" />
+          </Key>
+          <Property Name="S_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Service" Type="nvarchar" MaxLength="100" />
+          <Property Name="Display_Message" Type="nvarchar(max)" />
+          <Property Name="Schedule_Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Schedule_Time" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="Created_By" Type="int" />
+          <Property Name="Created_Time" Type="datetime" />
+          <Property Name="Updated_By" Type="int" />
+          <Property Name="Updated_Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="user_role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Companies" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Categories" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Functions" Type="nvarchar" MaxLength="1000" />
+          <Property Name="RoleStatus" Type="nvarchar" MaxLength="1" />
+        </EntityType>
+        <EntityContainer Name="Model_scrmStoreContainer">
+          <EntitySet Name="agentinfo" EntityType="Self.agentinfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="config" EntityType="Self.config" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="facebook_post" EntityType="Self.facebook_post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="field" EntityType="Self.field" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="field_option" EntityType="Self.field_option" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="floor_plan" EntityType="Self.floor_plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="password_log" EntityType="Self.password_log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="task_schedule_record" EntityType="Self.task_schedule_record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="task_schedule_setting" EntityType="Self.task_schedule_setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_role" EntityType="Self.user_role" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model_scrm" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="agent_info_list_item">
+          <Key>
+            <PropertyRef Name="AgentID" />
+            <PropertyRef Name="SellerID" />
+          </Key>
+          <Property Name="ColId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentID" Type="Int32" Nullable="false" />
+          <Property Name="AgentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LevelID" Type="Int32" />
+          <Property Name="SellerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Counter" Type="Int32" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="Account_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Photo_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="config_list_item">
+          <Key>
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="P_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="P_Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="facebook_post_list_item">
+          <Key>
+            <PropertyRef Name="Ticket_Id" />
+          </Key>
+          <Property Name="Fb_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ticket_Id" Type="Int32" Nullable="false" />
+          <Property Name="Created_By" Type="Int32" />
+          <Property Name="Created_Time" Type="DateTime" Precision="3" />
+          <Property Name="Updated_By" Type="Int32" />
+          <Property Name="Updated_Time" Type="DateTime" Precision="3" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Media_Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Media_Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="field_list_item">
+          <Key>
+            <PropertyRef Name="Field_Category" />
+            <PropertyRef Name="Field_Name" />
+          </Key>
+          <Property Name="Field_Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Field_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Field_Display" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Field_Tag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Field_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="field_option_list_item">
+          <Key>
+            <PropertyRef Name="Field_Name" />
+            <PropertyRef Name="Field_Option1" />
+          </Key>
+          <Property Name="Field_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Field_Option1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_role_list_item">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Companies" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Categories" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Functions" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="RoleStatus" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="scrmEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="agentinfo" EntityType="Model_scrm.agent_info_list_item" />
+          <EntitySet Name="config" EntityType="Model_scrm.config_list_item" />
+          <EntitySet Name="facebook_post" EntityType="Model_scrm.facebook_post_list_item" />
+          <EntitySet Name="field" EntityType="Model_scrm.field_list_item" />
+          <EntitySet Name="field_option" EntityType="Model_scrm.field_option_list_item" />
+          <EntitySet Name="user_role" EntityType="Model_scrm.user_role_list_item" />
+          <FunctionImport Name="Restore_NP360" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="Restore_HKTB" ReturnType="Collection(Int32)" />
+          <EntitySet Name="task_schedule_setting" EntityType="Model_scrm.task_schedule_setting_list_item" />
+          <EntitySet Name="task_schedule_record" EntityType="Model_scrm.task_schedule_record_list_item" />
+          <EntitySet Name="password_log" EntityType="Model_scrm.password_log_list_item" />
+          <EntitySet Name="floor_plan" EntityType="Model_scrm.floor_plan_list_item" />
+        </EntityContainer>
+        <EntityType Name="task_schedule_setting_list_item">
+          <Key>
+            <PropertyRef Name="S_Id" />
+          </Key>
+          <Property Name="S_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Service" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Display_Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Schedule_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Schedule_Time" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Created_By" Type="Int32" />
+          <Property Name="Created_Time" Type="DateTime" Precision="3" />
+          <Property Name="Updated_By" Type="Int32" />
+          <Property Name="Updated_Time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="task_schedule_record_list_item">
+          <Key>
+            <PropertyRef Name="R_Id" />
+          </Key>
+          <Property Name="R_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Service" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Display_Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Schedule_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="S_Id" Type="Int32" />
+          <Property Name="Alert_Time" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Handle_By" Type="Int32" />
+          <Property Name="Handle_Time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="password_log_list_item">
+          <Key>
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="P_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentID" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Created_Time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="floor_plan_list_item">
+          <Key>
+            <PropertyRef Name="F_Id" />
+          </Key>
+          <Property Name="F_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Ordering" Type="Int32" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Background" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Style" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Created_By" Type="Int32" />
+          <Property Name="Created_Time" Type="DateTime" Precision="3" />
+          <Property Name="Updated_By" Type="Int32" />
+          <Property Name="Updated_Time" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model_scrmStoreContainer" CdmEntityContainer="scrmEntities">
+          <EntitySetMapping Name="agentinfo">
+            <EntityTypeMapping TypeName="Model_scrm.agent_info_list_item">
+              <MappingFragment StoreEntitySet="agentinfo">
+                <ScalarProperty Name="ColId" ColumnName="ColId" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="Counter" ColumnName="Counter" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="Account_status" ColumnName="Account_status" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Photo_Type" ColumnName="Photo_Type" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="config">
+            <EntityTypeMapping TypeName="Model_scrm.config_list_item">
+              <MappingFragment StoreEntitySet="config">
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+                <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+                <ScalarProperty Name="P_Value" ColumnName="P_Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facebook_post">
+            <EntityTypeMapping TypeName="Model_scrm.facebook_post_list_item">
+              <MappingFragment StoreEntitySet="facebook_post">
+                <ScalarProperty Name="Fb_Id" ColumnName="Fb_Id" />
+                <ScalarProperty Name="Ticket_Id" ColumnName="Ticket_Id" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Time" ColumnName="Created_Time" />
+                <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+                <ScalarProperty Name="Updated_Time" ColumnName="Updated_Time" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Media_Type" ColumnName="Media_Type" />
+                <ScalarProperty Name="Media_Link" ColumnName="Media_Link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="field">
+            <EntityTypeMapping TypeName="Model_scrm.field_list_item">
+              <MappingFragment StoreEntitySet="field">
+                <ScalarProperty Name="Field_Category" ColumnName="Field_Category" />
+                <ScalarProperty Name="Field_Name" ColumnName="Field_Name" />
+                <ScalarProperty Name="Field_Display" ColumnName="Field_Display" />
+                <ScalarProperty Name="Field_Tag" ColumnName="Field_Tag" />
+                <ScalarProperty Name="Field_Type" ColumnName="Field_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="field_option">
+            <EntityTypeMapping TypeName="Model_scrm.field_option_list_item">
+              <MappingFragment StoreEntitySet="field_option">
+                <ScalarProperty Name="Field_Name" ColumnName="Field_Name" />
+                <ScalarProperty Name="Field_Option1" ColumnName="Field_Option" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_role">
+            <EntityTypeMapping TypeName="Model_scrm.user_role_list_item">
+              <MappingFragment StoreEntitySet="user_role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Companies" ColumnName="Companies" />
+                <ScalarProperty Name="Categories" ColumnName="Categories" />
+                <ScalarProperty Name="Functions" ColumnName="Functions" />
+                <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="task_schedule_setting">
+            <EntityTypeMapping TypeName="Model_scrm.task_schedule_setting_list_item">
+              <MappingFragment StoreEntitySet="task_schedule_setting">
+                <ScalarProperty Name="Updated_Time" ColumnName="Updated_Time" />
+                <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+                <ScalarProperty Name="Created_Time" ColumnName="Created_Time" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Schedule_Time" ColumnName="Schedule_Time" />
+                <ScalarProperty Name="Schedule_Type" ColumnName="Schedule_Type" />
+                <ScalarProperty Name="Display_Message" ColumnName="Display_Message" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+                <ScalarProperty Name="S_Id" ColumnName="S_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="task_schedule_record">
+            <EntityTypeMapping TypeName="Model_scrm.task_schedule_record_list_item">
+              <MappingFragment StoreEntitySet="task_schedule_record">
+                <ScalarProperty Name="Handle_Time" ColumnName="Handle_Time" />
+                <ScalarProperty Name="Handle_By" ColumnName="Handle_By" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Alert_Time" ColumnName="Alert_Time" />
+                <ScalarProperty Name="S_Id" ColumnName="S_Id" />
+                <ScalarProperty Name="Schedule_Type" ColumnName="Schedule_Type" />
+                <ScalarProperty Name="Display_Message" ColumnName="Display_Message" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+                <ScalarProperty Name="R_Id" ColumnName="R_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="password_log">
+            <EntityTypeMapping TypeName="Model_scrm.password_log_list_item">
+              <MappingFragment StoreEntitySet="password_log">
+                <ScalarProperty Name="Created_Time" ColumnName="Created_Time" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="floor_plan">
+            <EntityTypeMapping TypeName="Model_scrm.floor_plan_list_item">
+              <MappingFragment StoreEntitySet="floor_plan">
+                <ScalarProperty Name="Updated_Time" ColumnName="Updated_Time" />
+                <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+                <ScalarProperty Name="Created_Time" ColumnName="Created_Time" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="Background" ColumnName="Background" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Ordering" ColumnName="Ordering" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="F_Id" ColumnName="F_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
