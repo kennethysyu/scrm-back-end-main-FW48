@@ -8,7 +8,7 @@ namespace scrm1.Class
     public class Class1
     {
 
-        //// determine value of replyStatements 123
+        //// determine value of replyStatements 123 456
         //if (replyType == "allCalls")
         //{
         //    // handle "All_Phone_No"
